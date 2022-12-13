@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <dirent.h>
+#include <stdlib.h>
+#include <string.h>
+int main(void) {
+  DIR *d;
+  struct dirent *dir;
+  d = opendir(".");
+  if (d) {
+    while ((dir = readdir(d)) != NULL) {
+      printf("%s\n", dir->d_name);
+    }
+    closedir(d);
+  }
+  FILE *f = fopen("ponmala.txt", "w");
+  if (f == NULL) {
+    printf("Error opening file!\n");
+    exit(1);
+  }
+  fprintf(f, "hello I'm Ponmala");
+  fclose(f);
+  return 0;
+}
